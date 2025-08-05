@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
 import { useAppDispatch } from "@/redux/hooks";
@@ -23,7 +23,7 @@ const Login = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const onSubmit =async (credentials:{email:string,password:string}) => {
+  const onSubmit:SubmitHandler<FieldValues> =async (credentials) => {
     const toastId = toast.loading("Logging in...")
     try{
 
